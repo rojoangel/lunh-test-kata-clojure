@@ -6,7 +6,8 @@
   (* 2 n))
 
 (defn- char->number [ch]
-  (read-string (str ch)))
+  (->> (str ch)
+       read-string))
 
 (defn- sum-digits [n]
   (->> (str n)
