@@ -36,11 +36,14 @@
        evens
        (map char->number)))
 
+(defn- zero-ended? [n]
+  (= (rem n 10) 0))
+
 (defn valid? [cc]
   (let [reversed-cc (reverse cc)
         odd-digits-sum (apply + (odd-digits reversed-cc))
         even-digits-calc (apply + (map sum-digits (map double (even-digits reversed-cc))))]
-    (= 0 (rem (+ odd-digits-sum even-digits-calc) 10))))
+    (zero-ended? (+ odd-digits-sum even-digits-calc))))
 
 (facts "about luhn test"
        (fact "valid CC nums pass the test"
