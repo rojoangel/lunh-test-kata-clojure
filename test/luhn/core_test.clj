@@ -42,16 +42,18 @@
       (= 0)))
 
 (defn valid? [cc]
-  (zero-ended? (+ (->> cc
-                       reverse
-                       odd-digits
-                       (apply +))
-                  (->> cc
-                       reverse
-                       even-digits
-                       (map double)
-                       (map sum-digits)
-                       (apply +)))))
+  (->> (+
+         (->> cc
+              reverse
+              odd-digits
+              (apply +))
+         (->> cc
+              reverse
+              even-digits
+              (map double)
+              (map sum-digits)
+              (apply +)))
+       zero-ended?))
 
 (facts "about luhn test"
        (fact "valid CC nums pass the test"
