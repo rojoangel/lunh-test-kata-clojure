@@ -11,18 +11,23 @@
 (defn- odds [xs]
   (take-nth 2 xs))
 
+(defn- evens [xs]
+  (take-nth 2 (rest xs)))
+
 (defn- odd-digits [xs]
   (->> xs
        odds
        (map char->number)))
 
-(defn- evens [xs]
-  (take-nth 2 (rest xs)))
+(defn- even-digits [xs]
+  (->> xs
+       evens
+       (map char->number)))
 
 (defn valid? [cc]
   (let [reversed-cc (reverse cc)
         odd-digits-sum (apply + (odd-digits reversed-cc))
-        even-digits-calc (apply + (map sum-digits (map #(* 2 %) (map char->number(evens reversed-cc)))))]
+        even-digits-calc (apply + (map sum-digits (map #(* 2 %) (even-digits reversed-cc))))]
     (= 0 (rem (+ odd-digits-sum even-digits-calc) 10))))
 
 (facts "about luhn test"
