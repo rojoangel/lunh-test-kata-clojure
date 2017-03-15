@@ -2,6 +2,9 @@
   (:use midje.sweet)
   (:use [luhn.core]))
 
+(defn- double [n]
+  (* 2 n))
+
 (defn- sum-digits [n]
   (apply + (map (comp read-string str) (str n))))
 
@@ -27,7 +30,7 @@
 (defn valid? [cc]
   (let [reversed-cc (reverse cc)
         odd-digits-sum (apply + (odd-digits reversed-cc))
-        even-digits-calc (apply + (map sum-digits (map #(* 2 %) (even-digits reversed-cc))))]
+        even-digits-calc (apply + (map sum-digits (map double (even-digits reversed-cc))))]
     (= 0 (rem (+ odd-digits-sum even-digits-calc) 10))))
 
 (facts "about luhn test"
