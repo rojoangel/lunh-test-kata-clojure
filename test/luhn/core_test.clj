@@ -37,7 +37,9 @@
        (map char->number)))
 
 (defn- zero-ended? [n]
-  (= (rem n 10) 0))
+  (-> n
+      (rem 10)
+      (= 0)))
 
 (defn valid? [cc]
   (let [reversed-cc (reverse cc)
