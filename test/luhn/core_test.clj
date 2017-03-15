@@ -15,7 +15,8 @@
        (apply +)))
 
 (defn- odds [xs]
-  (take-nth 2 xs))
+  (->> xs
+       (take-nth 2)))
 
 (defn- evens [xs]
   (take-nth 2 (rest xs)))
