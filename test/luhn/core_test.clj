@@ -3,7 +3,8 @@
   (:use [luhn.core]))
 
 (defn- double [n]
-  (* 2 n))
+  (->> n
+       (* 2)))
 
 (defn- char->number [ch]
   (->> (str ch)
