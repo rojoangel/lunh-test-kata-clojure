@@ -11,12 +11,15 @@
 (defn- odds [xs]
   (take-nth 2 xs))
 
+(defn odd-digits [xs]
+  (map char->number (odds xs)))
+
 (defn- evens [xs]
   (take-nth 2 (rest xs)))
 
 (defn valid? [cc]
   (let [reversed-cc (reverse cc)
-        odd-digits-sum (apply + (map char->number (odds reversed-cc)))
+        odd-digits-sum (apply + (odd-digits reversed-cc))
         even-digits-calc (apply + (map sum-digits (map (comp #(* 2 %) char->number) (evens reversed-cc))))]
     (= 0 (rem (+ odd-digits-sum even-digits-calc) 10))))
 
