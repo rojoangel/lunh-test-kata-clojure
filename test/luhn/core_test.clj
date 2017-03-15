@@ -11,7 +11,7 @@
 (defn- odds [xs]
   (take-nth 2 xs))
 
-(defn odd-digits [xs]
+(defn- odd-digits [xs]
   (->> xs
        odds
        (map char->number)))
