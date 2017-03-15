@@ -42,9 +42,8 @@
       (= 0)))
 
 (defn valid? [cc]
-  (let [odd-digits-sum (apply + (odd-digits (reverse cc)))
-        even-digits-calc (apply + (map sum-digits (map double (even-digits (reverse cc)))))]
-    (zero-ended? (+ odd-digits-sum even-digits-calc))))
+  (zero-ended? (+ (apply + (odd-digits (reverse cc)))
+                  (apply + (map sum-digits (map double (even-digits (reverse cc))))))))
 
 (facts "about luhn test"
        (fact "valid CC nums pass the test"
