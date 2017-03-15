@@ -12,7 +12,9 @@
   (take-nth 2 xs))
 
 (defn odd-digits [xs]
-  (map char->number (odds xs)))
+  (->> xs
+       odds
+       (map char->number)))
 
 (defn- evens [xs]
   (take-nth 2 (rest xs)))
