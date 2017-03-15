@@ -7,11 +7,13 @@
        (* 2)))
 
 (defn- char->number [ch]
-  (->> (str ch)
+  (->> ch
+       str
        read-string))
 
 (defn- sum-digits [n]
-  (->> (str n)
+  (->> n
+       str
        (map char->number)
        (apply +)))
 
