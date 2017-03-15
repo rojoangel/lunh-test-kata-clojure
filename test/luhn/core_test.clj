@@ -19,7 +19,9 @@
        (take-nth 2)))
 
 (defn- evens [xs]
-  (take-nth 2 (rest xs)))
+  (->> xs
+       rest
+       (take-nth 2)))
 
 (defn- odd-digits [xs]
   (->> xs
