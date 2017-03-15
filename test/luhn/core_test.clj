@@ -9,7 +9,9 @@
   (read-string (str ch)))
 
 (defn- sum-digits [n]
-  (apply + (map char->number (str n))))
+  (->> (str n)
+       (map char->number)
+       (apply +)))
 
 (defn- odds [xs]
   (take-nth 2 xs))
