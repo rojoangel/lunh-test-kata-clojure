@@ -5,11 +5,11 @@
 (defn- double [n]
   (* 2 n))
 
-(defn- sum-digits [n]
-  (apply + (map (comp read-string str) (str n))))
-
 (defn- char->number [ch]
   (read-string (str ch)))
+
+(defn- sum-digits [n]
+  (apply + (map char->number (str n))))
 
 (defn- odds [xs]
   (take-nth 2 xs))
